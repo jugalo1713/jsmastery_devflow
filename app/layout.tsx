@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import localFont from "next/font/local";
+import Theme from "@/context/Theme";
 
 const inter = localFont({
   src: "./fonts/interVF.ttf",
@@ -32,7 +33,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${spaceGroitesk.variable}`}>
-        {children}
+        <Theme
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </Theme>
       </body>
     </html>
   );
