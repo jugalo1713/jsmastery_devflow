@@ -13,7 +13,7 @@ const SocialAuthForm = () => {
     try {
       await signIn(provider, {
         redirect: false,
-        redirectTo: ROUTES.HOME,
+        callbackUrl: ROUTES.HOME,
       });
     } catch (error) {
       toast({
