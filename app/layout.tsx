@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import localFont from "next/font/local";
 import Theme from "@/context/Theme";
-import Navbar from "@/components/navigation/navbar";
 
 const inter = localFont({
   src: "./fonts/interVF.ttf",
@@ -32,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${spaceGroitesk.variable}`}>
         <Theme
           attribute="class"
@@ -40,7 +38,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
           {children}
         </Theme>
       </body>
