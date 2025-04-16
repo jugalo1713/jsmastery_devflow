@@ -49,13 +49,15 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
   const handleSubmit: SubmitHandler<T> = async () => {};
+  console.log(defaultValues);
+  console.log(typeof defaultValues);
 
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-10 space-y-6">
-        {Object.keys(defaultValues).map((field) => (
+        {Object.keys(defaultValues || {}).map((field) => (
           <>
             <FormField
               key={field}
