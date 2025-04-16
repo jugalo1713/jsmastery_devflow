@@ -1,6 +1,4 @@
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
-export default page
+const Collection = () => {
+  return <div>Collection</div>;
+};
+export default Collection;

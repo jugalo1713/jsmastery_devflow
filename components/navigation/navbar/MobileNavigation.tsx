@@ -61,7 +61,7 @@ const MobileNavigation = () => {
               <SheetClose asChild>
                 <Link href={ROUTES.SIGNUP}>
                   <Button className="small-mediumlight-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
-                    <span className="primary-text-gradient">Log In</span>
+                    <span className="primary-text-gradient">Sign up</span>
                   </Button>
                 </Link>
               </SheetClose>
