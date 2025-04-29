@@ -1,4 +1,5 @@
 const ROUTES = {
+  ASK_QUESTION: "/ask-question",
   HOME: "/",
   SIGNIN: "/sign-in",
   SIGNUP: "/sign-up",
