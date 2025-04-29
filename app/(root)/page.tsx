@@ -1,4 +1,5 @@
 import { auth, signOut } from "@/auth";
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -14,9 +15,14 @@ const questions = [
       { _id: 5, name: "State Management" },
       { _id: 6, name: "Redux" },
     ],
-    u8pvotes: 15,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 15,
     answers: 8,
-    ciews: 250,
+    views: 250,
     createdAt: new Date(),
   },
   {
@@ -27,9 +33,14 @@ const questions = [
       { _id: 8, name: "HTML" },
       { _id: 9, name: "Flexbox" },
     ],
-    u8pvotes: 20,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 20,
     answers: 12,
-    ciews: 300,
+    views: 300,
     createdAt: new Date(),
   },
   {
@@ -41,9 +52,14 @@ const questions = [
       { _id: 11, name: "ES6" },
       { _id: 12, name: "Variables" },
     ],
-    u8pvotes: 30,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 30,
     answers: 10,
-    ciews: 400,
+    views: 400,
     createdAt: new Date(),
   },
   {
@@ -54,9 +70,14 @@ const questions = [
       { _id: 14, name: "Performance" },
       { _id: 15, name: "Optimization" },
     ],
-    u8pvotes: 25,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 25,
     answers: 7,
-    ciews: 350,
+    views: 350,
     createdAt: new Date(),
   },
   {
@@ -67,9 +88,14 @@ const questions = [
       { _id: 17, name: "Display" },
       { _id: 18, name: "HTML" },
     ],
-    u8pvotes: 18,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 18,
     answers: 6,
-    ciews: 220,
+    views: 220,
     createdAt: new Date(),
   },
   {
@@ -80,9 +106,14 @@ const questions = [
       { _id: 20, name: "API" },
       { _id: 21, name: "Fetch" },
     ],
-    u8pvotes: 12,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 12,
     answers: 4,
-    ciews: 180,
+    views: 180,
     createdAt: new Date(),
   },
   {
@@ -93,9 +124,14 @@ const questions = [
       { _id: 23, name: "Equality" },
       { _id: 24, name: "Operators" },
     ],
-    u8pvotes: 22,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 22,
     answers: 9,
-    ciews: 320,
+    views: 320,
     createdAt: new Date(),
   },
   {
@@ -106,9 +142,14 @@ const questions = [
       { _id: 26, name: "Grid" },
       { _id: 27, name: "Responsive Design" },
     ],
-    u8pvotes: 28,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 28,
     answers: 11,
-    ciews: 370,
+    views: 370,
     createdAt: new Date(),
   },
   {
@@ -119,9 +160,14 @@ const questions = [
       { _id: 29, name: "Hooks" },
       { _id: 30, name: "State Management" },
     ],
-    u8pvotes: 35,
+    author: {
+      _id: 1,
+      name: "John Doe",
+      image: "/icons/avatar.svg",
+    },
+    upvotes: 35,
     answers: 15,
-    ciews: 500,
+    views: 500,
     createdAt: new Date(),
   },
 ];
@@ -165,7 +211,7 @@ export default async function Home({ searchParams }: SearchParams) {
       <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredQuestions.map((question) => (
-          <h1 key={question._id}>{question.title}</h1>
+          <QuestionCard key={question._id} question={question} />
         ))}
       </div>
     </>
