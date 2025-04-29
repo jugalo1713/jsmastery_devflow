@@ -1,5 +1,5 @@
 interface Question {
-  _id: string;
+  _id: string | number;
   title: string;
   tags: Tag[];
   author: Author;
@@ -9,11 +9,11 @@ interface Question {
   views: number;
 }
 interface Tag {
-  _id: string;
+  _id: string | number;
   name: string;
 }
 interface Author {
-  _id: string;
+  _id: string | number;
   name: string;
   image: string;
 }

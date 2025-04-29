@@ -4,7 +4,7 @@ import { Badge } from "../ui/badge";
 import { getDeviconClassName } from "@/lib/utils";
 
 interface Props {
-  _id: string;
+  _id: string | number;
   name: string;
   questions?: number;
   showCount?: boolean;
