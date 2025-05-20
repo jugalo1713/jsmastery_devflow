@@ -1,9 +1,11 @@
-import { auth, signOut } from "@/auth";
 import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import { handleError } from "@/lib/handlers/error";
+import { NotFoundError } from "@/lib/http-errors";
+import { PageNotFoundError } from "next/dist/shared/lib/utils";
 import Link from "next/link";
 
 const questions = [
@@ -172,11 +174,14 @@ const questions = [
   },
 ];
 
+
+
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 export default async function Home({ searchParams }: SearchParams) {
+
   const { query = "", filter = "" } = await searchParams;
   const filteredQuestions = questions.filter((question) => {
     const matchesQuery = question.title
