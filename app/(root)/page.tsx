@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import { handleError } from "@/lib/handlers/error";
 import { NotFoundError } from "@/lib/http-errors";
+import dbConnect from "@/lib/mongoose";
 import { PageNotFoundError } from "next/dist/shared/lib/utils";
 import Link from "next/link";
 
@@ -174,13 +175,21 @@ const questions = [
   },
 ];
 
-
+const test = async () => {
+  try {
+    throw new Error("Test error");
+    await dbConnect();
+  } catch (error) {
+    return handleError(error);
+  }
+};
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 export default async function Home({ searchParams }: SearchParams) {
+  const result = await test();
 
   const { query = "", filter = "" } = await searchParams;
   const filteredQuestions = questions.filter((question) => {
