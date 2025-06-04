@@ -19,15 +19,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             ? (profile?.login as string)
             : (user.name?.toLowerCase() as string),
       };
-      console.log("antes de llamar a api.auth.oAuthSignIn");
-      const response  = (await api.auth.oAuthSignIn({
+
+      const response = (await api.auth.oAuthSignIn({
         user: userInfo,
         provider: account.provider as "github" | "google",
         providerAccountId: account.providerAccountId,
       })) as ActionResponse;
-
-      console.log("despues de llamar a api.auth.oAuthSignIn");
-      console.log("response => ", response);
 
       if (!response.success) return false;
 
