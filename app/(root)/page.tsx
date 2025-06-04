@@ -1,8 +1,10 @@
+import { auth } from "@/auth";
 import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import { api } from "@/lib/api";
 import { handleError } from "@/lib/handlers/error";
 import { NotFoundError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
@@ -175,21 +177,23 @@ const questions = [
   },
 ];
 
-const test = async () => {
-  try {
-    throw new Error("Test error");
-    await dbConnect();
-  } catch (error) {
-    return handleError(error);
-  }
-};
+// const test = async () => {
+//   try {
+//     return await api.users.getAll();
+//   } catch (error) {
+//     return handleError(error);
+//   }
+// };
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 export default async function Home({ searchParams }: SearchParams) {
-  const result = await test();
+  //const result = await test();
+  // const session = await auth();
+
+  // console.log("session => ", session);
 
   const { query = "", filter = "" } = await searchParams;
   const filteredQuestions = questions.filter((question) => {

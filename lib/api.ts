@@ -2,6 +2,7 @@ import { get } from "http";
 import { fetchHandler } from "./handlers/fetch";
 import { IUser } from "@/database/user.model";
 import { IAccount } from "@/database/account.model";
+import ROUTES from "@/constants/routes";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000/api";
@@ -28,23 +29,39 @@ export const api = {
   },
 
   accounts: {
-    getAll: () => fetchHandler(`${API_BASE_URL}/account`),
-    getById: (id: string) => fetchHandler(`${API_BASE_URL}/account/${id}`),
+    getAll: () => fetchHandler(`${API_BASE_URL}/accounts`),
+    getById: (id: string) => fetchHandler(`${API_BASE_URL}/accounts/${id}`),
     getByProvider: (providerAccountId: string) =>
-      fetchHandler(`${API_BASE_URL}/account/provider/${providerAccountId}`, {
+      fetchHandler(`${API_BASE_URL}/accounts/provider/${providerAccountId}`, {
         method: "POST",
       }),
     create: (accountData: Partial<IAccount>) =>
-      fetchHandler(`${API_BASE_URL}/account`, {
+      fetchHandler(`${API_BASE_URL}/accounts`, {
         method: "POST",
         body: JSON.stringify(accountData),
       }),
     update: (id: string, accountData: Partial<IAccount>) =>
-      fetchHandler(`${API_BASE_URL}/account/${id}`, {
+      fetchHandler(`${API_BASE_URL}/accounts/${id}`, {
         method: "PUT",
         body: JSON.stringify(accountData),
       }),
     delete: (id: string) =>
-      fetchHandler(`${API_BASE_URL}/account/${id}`, { method: "DELETE" }),
+      fetchHandler(`${API_BASE_URL}/accounts/${id}`, { method: "DELETE" }),
+  },
+
+  auth: {
+    oAuthSignIn: ({
+      user,
+      provider,
+      providerAccountId,
+    }: SignInWithOAuthParams) =>
+      fetchHandler(`${API_BASE_URL}/auth/${ROUTES.SIGN_IN_WITH_OAUTH}`, {
+        method: "POST",
+        body: JSON.stringify({
+          user,
+          provider,
+          providerAccountId,
+        }),
+      }),
   },
 };
