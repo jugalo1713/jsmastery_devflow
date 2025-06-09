@@ -177,24 +177,11 @@ const questions = [
   },
 ];
 
-// const test = async () => {
-//   try {
-//     return await api.users.getAll();
-//   } catch (error) {
-//     return handleError(error);
-//   }
-// };
-
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 export default async function Home({ searchParams }: SearchParams) {
-  //const result = await test();
-  // const session = await auth();
-
-  // console.log("session => ", session);
-
   const { query = "", filter = "" } = await searchParams;
   const filteredQuestions = questions.filter((question) => {
     const matchesQuery = question.title
